@@ -20,6 +20,7 @@ class AddEventPage extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
+      backgroundColor: Colors.white,
       body: buildBody(context),
     );
   }
@@ -35,25 +36,13 @@ class AddEventPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Category'),
-                const SizedBox(
-                  height: 10,
-                ),
-                GetBuilder<AddEventController>(
-                    id: controller.categoryId,
-                    builder: (_) {
-                      return Wrap(
-                        spacing: 20,
-                        alignment: WrapAlignment.start,
-                        children: buildSelectCategoryWidget(context),
-                      );
-                    }),
                 const SizedBox(
                   height: 20,
                 ),
                 const Text(
                   'Title',
                   textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   height: 10,
@@ -78,37 +67,57 @@ class AddEventPage extends StatelessWidget {
                   height: 20,
                 ),
                 const Text(
-                  'Time',
+                  'Date',
                   textAlign: TextAlign.start,
+                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    border: Border.all(color: Colors.black, width: 0.5),
-                    borderRadius: BorderRadius.circular((20)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
                       children: [
+                        Text('start time'),
+                        SizedBox(height: 10,),
                         GestureDetector(
                             onTap: () {
                               controller.selectDate(context, 1);
                             },
-                            child: Obx(() => Text(controller.startDateTimeText.value))),
-                        const Text('———————'),
+                            child: Obx(() => Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.black, width: 0.5),
+                                  borderRadius: BorderRadius.circular((8)),
+                                ),
+                                child: Text(controller.startDateTimeText.value)))),
+                      ],
+                    ),
+                    const Text('———————'),
+                    Column(
+                      children: [
+                        Text('end time'),
+                        SizedBox(height: 10,),
                         GestureDetector(
                             onTap: () {
                               controller.selectDate(context, 2);
                             },
-                            child: Obx(() => Text(controller.endDateTimeText.value))),
+                            child: Obx(() => Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.black, width: 0.5),
+                                  borderRadius: BorderRadius.circular((8)),
+                                ),
+                                child: Text(controller.endDateTimeText.value)))),
                       ],
                     ),
-                  ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 const Text(
                   'OverView',
@@ -135,6 +144,22 @@ class AddEventPage extends StatelessWidget {
                         textAlign: TextAlign.start),
                   ),
                 ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text('Category'),
+                const SizedBox(
+                  height: 10,
+                ),
+                GetBuilder<AddEventController>(
+                    id: controller.categoryId,
+                    builder: (_) {
+                      return Wrap(
+                        spacing: 20,
+                        alignment: WrapAlignment.start,
+                        children: buildSelectCategoryWidget(context),
+                      );
+                    }),
                 const SizedBox(
                   height: 20,
                 ),

@@ -49,7 +49,6 @@ class AddEventController extends GetxController {
     } else {
       endDateTime.value = picked ?? DateTime.now();
     }
-
     selectTime(context, id);
   }
 
