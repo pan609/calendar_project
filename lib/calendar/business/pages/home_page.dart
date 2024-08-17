@@ -1,3 +1,4 @@
+import 'package:calendar_project/calendar/business/pages/notify_page.dart';
 import 'package:calendar_project/calendar/business/widgets/svg_icon.dart';
 import 'package:calendar_project/calendar/common/constants/page_name.dart';
 import 'package:calendar_project/calendar/common/constants/svg_path.dart';
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
 
   void onIndexChanged(int index) {
+    // print('index:$index');
     setState(() {
       currentIndex = index;
     });
@@ -44,39 +46,44 @@ class _HomePageState extends State<HomePage> {
         controller: pageController,
         onPageChanged: onIndexChanged,
         children: const [
+          // HomePage(title: "homepage"),
           CalendarPage(title: "calendar"),
+          NotifyPage(title: "notify"),
           SettingPage(title: "setting"),
         ],
       ),
-      // 底部带凹下的导航
       bottomNavigationBar: BuildNavigation(
         currentIndex: currentIndex,
         items: [
           NavigationItemModel(
-            label: "calendar",
+            icon: SvgPath.homepageIcon,
+          ),
+          NavigationItemModel(
             icon: SvgPath.calendarIcon,
           ),
           NavigationItemModel(
-            label: "setting",
-            icon: SvgPath.settingsIcon,
+            icon: SvgPath.notifyIcon,
+          ),
+          NavigationItemModel(
+            icon: SvgPath.profileIcon,
           ),
         ],
         onTap: onIndexChanged, // 切换tab事件
       ),
-      floatingActionButton: FloatingActionButton.large(
-        onPressed: () {
-          Get.toNamed(PageName.addEventPage);
-        },
-        shape: const CircleBorder(
-          side: BorderSide(color: Colors.red),
-        ),
-        child: const SvgIconWidget(
-          SvgPath.addEventIcon,
-          size: 250,
-        ),
-      ),
-      // 浮动按钮
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, // 浮动按钮 停靠在底部中间位置
+      // floatingActionButton: FloatingActionButton.large(
+      //   onPressed: () {
+      //     Get.toNamed(PageName.addEventPage);
+      //   },
+      //   shape: const CircleBorder(
+      //     side: BorderSide(color: Colors.red),
+      //   ),
+      //   child: const SvgIconWidget(
+      //     SvgPath.addEventIcon,
+      //     size: 250,
+      //   ),
+      // ),
+      // // 浮动按钮
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked, // 浮动按钮 停靠在底部中间位置
     );
   }
 }

@@ -19,10 +19,11 @@ class BuildNavigation extends StatelessWidget {
     var widgets = <Widget>[];
     var theme = Theme.of(context).bottomNavigationBarTheme;
     for (var i = 0; i < items.length; i++) {
-      var labelStyle = currentIndex == i ? theme.selectedLabelStyle : theme.unselectedLabelStyle;
-      var color = currentIndex == i ? theme.selectedItemColor : theme.unselectedItemColor;
-      var gap = (items.length / 2).ceil();
-      if (gap == i) widgets.add(const SizedBox(width: 160));
+      // selected tab icon has different style and color
+      // var labelStyle = currentIndex == i ? theme.selectedLabelStyle : theme.unselectedLabelStyle;
+      // delete center add button gap
+      // var gap = (items.length / 2).ceil();
+      // if (gap == i) widgets.add(const SizedBox(width: 160));
       widgets.add(Expanded(
         child: MaterialButton(
           elevation: 0,
@@ -36,44 +37,12 @@ class BuildNavigation extends StatelessWidget {
                 children: [
                   SvgIconWidget(
                     items[i].icon,
-                    size: 20,
-                    color: currentIndex != i ? color : null,
-                  ),
-                  Positioned(
-                    right: -8,
-                    top: -5,
-                    child: items[i].count > 0
-                        ? Container(
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 3,
-                            ),
-                            height: 16,
-                            constraints: const BoxConstraints(
-                              minWidth: 16,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Text(
-                              items[i].count <= 99 ? items[i].count.toString() : '99+',
-                              style: const TextStyle(
-                                fontSize: 11,
-                                color: Colors.white,
-                              ),
-                            ),
-                          )
-                        : Container(),
+                    size: 30,
+                    color: currentIndex == i ? const Color(0xFF302CF3) : null, // todo: selected inco filled style
                   ),
                 ],
               ),
               const SizedBox(height: 5),
-              Text(
-                items[i].label,
-                maxLines: 1,
-                style: labelStyle?.copyWith(color: color),
-              ),
             ],
           ),
         ),
@@ -81,8 +50,6 @@ class BuildNavigation extends StatelessWidget {
     }
     return BottomAppBar(
       color: theme.backgroundColor,
-      shape: const CircularNotchedRectangle(), // 中间凹下的形状
-      notchMargin: 30, // 凹下的尺寸
       child: SizedBox(
         height: kBottomNavigationBarHeight,
         child: Row(children: widgets),
@@ -92,12 +59,10 @@ class BuildNavigation extends StatelessWidget {
 }
 
 class NavigationItemModel {
-  final String label;
   final String icon;
   final int count;
 
   NavigationItemModel({
-    required this.label,
     required this.icon,
     this.count = 0,
   });
