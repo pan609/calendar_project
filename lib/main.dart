@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'calendar/business/bindings/home_binding.dart';
-import 'calendar/business/pages/home_page.dart';
+import 'calendar_app.dart';
 import 'calendar/business/utils/routes_utils.dart';
 import 'calendar/common/constants/page_name.dart';
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: AppPages.routes,
-      home: HomePage(),
+      home: const CalendarApp(),
     );
   }
 }
