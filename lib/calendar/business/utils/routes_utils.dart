@@ -2,6 +2,7 @@ import 'package:calendar_project/calendar/business/bindings/add_event_binding.da
 import 'package:calendar_project/calendar/business/bindings/home_binding.dart';
 import 'package:calendar_project/calendar/business/pages/add_event_page.dart';
 import 'package:calendar_project/calendar/business/pages/home_page.dart';
+import 'package:calendar_project/calendar_app.dart';
 import 'package:calendar_project/calendar/common/constants/page_name.dart';
 import 'package:get/get.dart';
 
