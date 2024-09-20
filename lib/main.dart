@@ -1,13 +1,17 @@
+import 'package:calendar_project/calendar/business/models/event_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'calendar/business/bindings/home_binding.dart';
 import 'calendar_app.dart';
 import 'calendar/business/utils/routes_utils.dart';
-import 'calendar/common/constants/page_name.dart';
+import 'package:provider/provider.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (_) => EventListModel(), // 创建 MyModel 实例
+    child: const MyApp(),
+  ),);
 }
 
 class MyApp extends StatelessWidget {

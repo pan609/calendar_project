@@ -1,10 +1,7 @@
 import 'package:calendar_project/calendar/business/pages/home_page.dart';
 import 'package:calendar_project/calendar/business/pages/notify_page.dart';
-import 'package:calendar_project/calendar/business/widgets/svg_icon.dart';
-import 'package:calendar_project/calendar/common/constants/page_name.dart';
 import 'package:calendar_project/calendar/common/constants/svg_path.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'calendar/business/widgets/build_navigation.dart';
 import 'calendar/business/pages/calendar_page.dart';
@@ -39,15 +36,15 @@ class _CalendarAppState extends State<CalendarApp> {
       resizeToAvoidBottomInset: false,
       // 不允许键盘事件影响界面
       appBar: AppBar(
-        title: const Text( 
-        'Hello, Mike~',
-        style: TextStyle(
-          fontFamily: 'Jaldi', // 字体家族
-          fontSize: 32.0, // 字体大小
-          fontWeight: FontWeight.w400, // 字体权重，400 对应普通字体
-          height: 54.08 / 32.0, // 行高，注意 Flutter 中的 height 是相对于 fontSize 的倍数
+        title: const Text(
+          'Hello, Mike~',
+          style: TextStyle(
+            fontFamily: 'Jaldi', // 字体家族
+            fontSize: 32.0, // 字体大小
+            fontWeight: FontWeight.w400, // 字体权重，400 对应普通字体
+            height: 54.08 / 32.0, // 行高，注意 Flutter 中的 height 是相对于 fontSize 的倍数
           ),
-        textAlign: TextAlign.left, // 文本对齐方式
+          textAlign: TextAlign.left, // 文本对齐方式
         ),
       ),
       // PageController 控制 PageView 呈现页面
@@ -55,11 +52,11 @@ class _CalendarAppState extends State<CalendarApp> {
         physics: const NeverScrollableScrollPhysics(),
         controller: pageController,
         onPageChanged: onIndexChanged,
-        children: const [
+        children: [
           HomePage(title: "homepage"),
-          CalendarPage(title: "calendar"),
-          NotifyPage(title: "notify"),
-          SettingPage(title: "setting"),
+          const CalendarPage(title: "calendar"),
+          const NotifyPage(title: "notify"),
+          const SettingPage(title: "setting"),
         ],
       ),
       bottomNavigationBar: BuildNavigation(
